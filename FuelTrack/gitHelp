@@ -1,0 +1,4 @@
+git remote set-url origin https://github.com/b26/FuelTrack.git
+git remote add origin https://github.com/b26/FuelTrack.git
+git push --set-upstream origin master
+
