@@ -3,10 +3,9 @@ package bashir1.fueltrack;
 import java.util.Date;
 
 /**
- * Created by X on 16-01-25.
+ * Created by bashir1 on 1/28/16.
  */
-public class Log {
-
+public class Entry {
     private Date date;
     private String station;
     private Double odometer;
@@ -14,18 +13,14 @@ public class Log {
     private Double fuelUnitCost;
     private String fuelGrade;
 
-    public Log(Date date, String station, Double odometer,
-               Double fuelAmount, Double fuelUnitCost, String fuelGrade) {
+    public Entry(Date date, String station, Double odometer,
+                 Double fuelAmount, Double fuelUnitCost, String fuelGrade) {
         this.date = date;
         this.station = station;
         this.odometer = odometer;
         this.fuelAmount = fuelAmount;
         this.fuelUnitCost = fuelUnitCost;
         this.fuelGrade = fuelGrade;
-    }
-
-    public Double fuelCost() {
-        return this.getFuelAmount() * this.getFuelUnitCost();
     }
 
     public Date getDate() {
@@ -76,4 +71,7 @@ public class Log {
         this.fuelGrade = fuelGrade;
     }
 
+    public double fuelCost() {
+        return this.getFuelUnitCost() * this.getFuelAmount();
+    }
 }

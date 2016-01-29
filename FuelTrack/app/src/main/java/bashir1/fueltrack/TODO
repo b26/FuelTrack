@@ -1,0 +1,11 @@
+- GSON
+    - You need GSON objects for data-persistence.
+    - Look at the Twitter example.
+
+- Run App -> See if it builds.
+
+- Build Test Cases
+    - Do you meet all the requirements?
+
+- Table Layout -> Potentially will be used on all activities.
+    - Look into Fragments!!!

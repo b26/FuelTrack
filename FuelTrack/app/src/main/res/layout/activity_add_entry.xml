@@ -7,13 +7,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="bashir1.fueltrack.MainActivity">
+    tools:context="bashir1.fueltrack.AddEntryActivity">
 
-
-    <!--Need table layout-->
-    <!--read about fragments-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
 </RelativeLayout>
