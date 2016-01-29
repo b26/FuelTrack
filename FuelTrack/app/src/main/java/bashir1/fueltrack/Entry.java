@@ -72,6 +72,6 @@ public class Entry {
     }
 
     public double fuelCost() {
-        return this.getFuelUnitCost() * this.getFuelAmount();
+        return (this.getFuelUnitCost()/100) * this.getFuelAmount();
     }
 }

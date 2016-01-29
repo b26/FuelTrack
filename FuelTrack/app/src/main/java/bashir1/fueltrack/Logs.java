@@ -6,6 +6,10 @@ import java.util.Date;
 /**
  * Created by X on 16-01-25.
  */
+
+/*
+* @params good for documentation!!!
+* */
 public class Logs {
     private ArrayList<Entry> logs;
 
@@ -31,12 +35,16 @@ public class Logs {
     }
 
     /*
-    * how could you return an object? instead of Date date do {}
+    * FIXME consider removing addNewEntry
     * */
 
     public void addNewEntry(Date date, String station, Double odometer, String fuelGrade,
                           Double fuelAmount, Double fuelUnitCost) {
         Entry entry = new Entry(date, station, odometer, fuelAmount, fuelUnitCost, fuelGrade);
+        this.logs.add(entry);
+    }
+
+    public void add(Entry entry) {
         this.logs.add(entry);
     }
 
@@ -51,6 +59,8 @@ public class Logs {
         logs.add(index, entry);
     }
 
-    
+    public boolean hasEntry(Entry entry) {
+        return logs.contains(entry);
+    }
 
 }

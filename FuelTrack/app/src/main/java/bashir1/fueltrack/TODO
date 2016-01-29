@@ -3,9 +3,13 @@
     - Look at the Twitter example.
 
 - Run App -> See if it builds.
+    - App builds ->
+        Needed to install a new device and SDK build tools...
 
 - Build Test Cases
     - Do you meet all the requirements?
+        - EntryTest and LogsTest works. They meet my requirements.
+        - Does NOT test views...or views updating...Not sure how I will test that.
 
 - Table Layout -> Potentially will be used on all activities.
     - Look into Fragments!!!
