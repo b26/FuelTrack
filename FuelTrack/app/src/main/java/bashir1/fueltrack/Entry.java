@@ -13,6 +13,10 @@ public class Entry {
     private Double fuelUnitCost;
     private String fuelGrade;
 
+    public Entry() {
+
+    }
+
     public Entry(Date date, String station, Double odometer,
                  Double fuelAmount, Double fuelUnitCost, String fuelGrade) {
         this.date = date;
@@ -21,6 +25,11 @@ public class Entry {
         this.fuelAmount = fuelAmount;
         this.fuelUnitCost = fuelUnitCost;
         this.fuelGrade = fuelGrade;
+    }
+
+    @Override
+    public String toString() {
+        return "Station: " + this.station + " | Total Cost: " + this.fuelCost();
     }
 
     public Date getDate() {
@@ -72,6 +81,6 @@ public class Entry {
     }
 
     public double fuelCost() {
-        return (this.getFuelUnitCost()/100) * this.getFuelAmount();
+        return Math.round((this.getFuelUnitCost()/100) * this.getFuelAmount());
     }
 }

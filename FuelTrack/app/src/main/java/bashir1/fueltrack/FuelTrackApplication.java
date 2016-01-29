@@ -1,10 +1,11 @@
 package bashir1.fueltrack;
 
 import android.app.Application;
+import android.content.Context;
 
 /**
  * Created by bashir1 on 1/28/16.
- *
+ * TODO note that you got the idea from FillerCreep
  */
 public class FuelTrackApplication extends Application {
 

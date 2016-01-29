@@ -13,10 +13,12 @@ public class FuelTrackControllerTest extends ActivityInstrumentationTestCase2 {
 
 
     public void testGetEntry() {
+
         assertFalse(true);
     }
 
     public void testGetLogs() {
+
         assertFalse(true);
     }
 
