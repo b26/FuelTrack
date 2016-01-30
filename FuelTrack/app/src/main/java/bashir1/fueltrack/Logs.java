@@ -25,6 +25,14 @@ public class Logs {
     public Entry getEntry(int index) {
         return logs.get(index);
     }
+
+    public void setLogs(ArrayList<Entry> logs) {
+        this.logs = logs;
+    }
+
+    public void initLogs () {
+        this.logs = new ArrayList<Entry>();
+    }
     
     public Double totalCost() {
         double cost = 0;

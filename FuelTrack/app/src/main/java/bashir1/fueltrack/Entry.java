@@ -29,7 +29,7 @@ public class Entry {
 
     @Override
     public String toString() {
-        return "Station: " + this.station + " | Total Cost: " + this.fuelCost();
+        return "Station: " + this.station + " | Total Cost: $" + this.fuelCost();
     }
 
     public Date getDate() {
