@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.Date;
@@ -22,25 +23,31 @@ public class MainActivity extends ActionBarActivity {
     private Logs logs = FuelTrackApplication.getApp();
     private FuelTrackController fc = FuelTrackApplication.getController();
     private Context context;
+    public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = getApplicationContext();
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setTitle("bashir1-FuelTrack");
         listView = (ListView) findViewById(R.id.list);
-        Entry test = new Entry(new Date(), "Shell", 8888.8, 45.2, 64.2, "Regular");
-        logs.add(test);
-        fc.save(context);
+        Button addButton = (Button) findViewById(R.id.add_new_entry);
 
+        addButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (MainActivity.this, AddEntryActivity.class);
+                startActivity(intent);
+            }
+        });
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent (MainActivity.this, AddEntryActivity.class);
+                Intent intent = new Intent (MainActivity.this, EditEntryActivity.class);
+                intent.putExtra(EXTRA_MESSAGE, position);
                 startActivity(intent);
-
-
-
             }
         });
     }

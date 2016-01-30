@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Date;
 
 import android.content.Context;
 
@@ -38,6 +39,14 @@ public class FuelTrackController implements ControllerInterface {
     @Override
     public void initLogs() {
         app.initLogs();
+    }
+
+    @Override
+    public void add(Date date, String station, Double odometer,
+                    Double fuelAmount, Double fuelUnitCost, String fuelGrade) {
+
+        app.addNewEntry(date, station, odometer, fuelGrade, fuelAmount,fuelUnitCost);
+
     }
 
     @Override
@@ -71,6 +80,22 @@ public class FuelTrackController implements ControllerInterface {
     @Override
     public void sort() {
 
+    }
+
+
+    @Override
+    public Entry newEntry(Date date, String station, Double odometer, Double fuelAmount, Double fuelUnitCost, String fuelGrade) {
+        return new Entry(date, station, odometer, fuelAmount, fuelUnitCost, fuelGrade);
+    }
+
+    @Override
+    public Entry getAtIndex(int index) {
+        return app.getEntry(index);
+    }
+
+    @Override
+    public void add(Entry entry, int index) {
+        app.editLog(index, entry);
     }
 
     @Override

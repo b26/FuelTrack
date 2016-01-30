@@ -9,4 +9,71 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="bashir1.fueltrack.EditEntryActivity">
 
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:id="@+id/date_edit"
+        android:ems="10"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="false"
+        android:hint="Date" />
+
+
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/station_edit"
+        android:hint="Station"
+        android:layout_below="@+id/date_edit"
+        android:layout_alignParentStart="true"
+        android:inputType="text" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/odometer_edit"
+        android:hint="Odometer"
+        android:layout_below="@+id/station_edit"
+        android:layout_alignParentStart="true"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fuel_amount_edit"
+        android:hint="Fuel Amount"
+        android:layout_below="@+id/odometer_edit"
+        android:layout_alignParentStart="true"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fuel_unit_cost_edit"
+        android:hint="Fuel Unit Cost"
+        android:layout_below="@+id/fuel_amount_edit"
+        android:layout_alignParentStart="true"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fuel_grade_edit"
+        android:hint="Fuel Grade"
+        android:layout_below="@+id/fuel_unit_cost_edit"
+        android:layout_alignParentStart="true"
+        android:inputType="text"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/save_edit"
+        android:layout_below="@+id/fuel_grade_edit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="87dp" />
+
 </RelativeLayout>

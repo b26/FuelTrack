@@ -1,15 +1,10 @@
-- GSON
-    - You need GSON objects for data-persistence.
-    - Look at the Twitter example.
+- Test Cases
+    - Look into how you could test the UI.
 
-- Run App -> See if it builds.
-    - App builds ->
-        Needed to install a new device and SDK build tools...
+- Need to check if the user entered something or not. If nothing entered -> alert message
 
-- Build Test Cases
-    - Do you meet all the requirements?
-        - EntryTest and LogsTest works. They meet my requirements.
-        - Does NOT test views...or views updating...Not sure how I will test that.
+- UML Diagram needs to be updated.
 
-- Table Layout -> Potentially will be used on all activities.
-    - Look into Fragments!!!
+- Why do I even need LogsModel?
+
+- Refactor Code. Put into methods etc...
