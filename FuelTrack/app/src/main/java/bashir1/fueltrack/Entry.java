@@ -13,10 +13,6 @@ public class Entry {
     private Double fuelUnitCost;
     private String fuelGrade;
 
-    public Entry() {
-
-    }
-
     public Entry(Date date, String station, Double odometer,
                  Double fuelAmount, Double fuelUnitCost, String fuelGrade) {
         this.date = date;
@@ -33,7 +29,7 @@ public class Entry {
     }
 
     public Date getDate() {
-        return date;
+        return this.date;
     }
 
     public void setDate(Date date) {

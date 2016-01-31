@@ -72,7 +72,7 @@ public class EditEntryActivity extends ActionBarActivity {
                 /* I need a replace method...*/
                 Entry tmp = fc.newEntry(date, station, odometer, fuelAmount, fuelUnitCost, fuelGrade);
                 fc.add(tmp, position);
-                fc.save(context);
+                //fc.save(context);
 
 
                 Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);

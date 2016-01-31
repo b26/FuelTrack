@@ -8,11 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -71,7 +68,7 @@ public class AddEntryActivity extends ActionBarActivity {
 
                 fc.add(date, station, odometer, fuelAmount, fuelUnitCost, fuelGrade);
 
-                fc.save(context);
+                //fc.save(context);
 
 
                 Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);

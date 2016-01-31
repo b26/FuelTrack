@@ -26,14 +26,15 @@ public class FuelTrackController implements ControllerInterface {
     Gson gson;
     private static final String FILENAME = "file.sav";
 
-
-
-    public void init() {
+    public boolean init() {
         app = FuelTrackApplication.getApp();
+        if (app.getLogs().size() >= 0) return true;
+        else return false;
     }
 
     public FuelTrackController() {
         this.init();
+
     }
 
     @Override
@@ -42,46 +43,49 @@ public class FuelTrackController implements ControllerInterface {
     }
 
     @Override
-    public void add(Date date, String station, Double odometer,
+    public boolean add(Date date, String station, Double odometer,
                     Double fuelAmount, Double fuelUnitCost, String fuelGrade) {
 
-        app.addNewEntry(date, station, odometer, fuelGrade, fuelAmount,fuelUnitCost);
-
+        return app.addNewEntry(date, station, odometer, fuelGrade, fuelAmount, fuelUnitCost);
     }
 
     @Override
-    public void save(Context context) {
+    public boolean add(Entry entry) {
+        return app.add(entry);
+    }
+
+    @Override
+    public boolean add(Entry entry, int index) {
+        return app.editLog(index, entry);
+    }
+
+    @Override
+    public boolean hasEntry(Entry entry) {
+        return app.hasEntry(entry);
+    }
+
+    @Override
+    public int save(Context context) {
         /* Check if log already exists */
 
         try {
             /* taken from lonely twitter FIXME link needed */
+            /*FIXME maybe you should...change context*/
             FileOutputStream fos = context.openFileOutput(FILENAME, 0);
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
             Gson gson = new Gson();
             gson.toJson(app.getLogs(), out);
             out.flush();
             fos.close();
+            return 1;
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
-            //e.printStackTrace(); //not useful
             throw new RuntimeException();
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            //e.printStackTrace();
             throw new RuntimeException();
         }
     }
-
-    @Override
-    public void set(ArrayList<Entry> logs) {
-        app.setLogs(logs);
-    }
-
-    @Override
-    public void sort() {
-
-    }
-
 
     @Override
     public Entry newEntry(Date date, String station, Double odometer, Double fuelAmount, Double fuelUnitCost, String fuelGrade) {
@@ -93,28 +97,9 @@ public class FuelTrackController implements ControllerInterface {
         return app.getEntry(index);
     }
 
-    @Override
-    public void add(Entry entry, int index) {
-        app.editLog(index, entry);
-    }
 
     @Override
-    public Entry getEntry(Entry entry) {
-        return null;
-    }
-
-    @Override
-    public boolean hasEntry(Entry entry) {
-       return  app.hasEntry(entry);
-    }
-
-    @Override
-    public ArrayList<Entry> get() {
-        return app.getLogs();
-    }
-
-    @Override
-    public void load(Context context) {
+    public int load(Context context) {
         try {
             FileInputStream fis = context.openFileInput(FILENAME);
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
@@ -127,13 +112,15 @@ public class FuelTrackController implements ControllerInterface {
             ArrayList<Entry> tmp;
             tmp = gson.fromJson(in, listType);
             app.setLogs(tmp);
+            return 1;
             //tmp.clear();
 
         } catch (FileNotFoundException e) {
-            /* create a new array list? */
             this.initLogs();
         } catch (IOException e) {
             throw new RuntimeException();
         }
+        return 0;
     }
+
 }

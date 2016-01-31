@@ -1,7 +1,6 @@
 package bashir1.fueltrack;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -13,8 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import java.util.Date;
-
 
 public class MainActivity extends ActionBarActivity {
 
@@ -23,6 +20,8 @@ public class MainActivity extends ActionBarActivity {
     private Logs logs = FuelTrackApplication.getApp();
     private FuelTrackController fc = FuelTrackApplication.getController();
     private Context context;
+
+    /* from lonelyTwitter */
     public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
 
 
@@ -58,7 +57,6 @@ public class MainActivity extends ActionBarActivity {
         fc.load(context);
         adapter = new ArrayAdapter<Entry>(this, R.layout.list_item, logs.getLogs());
         listView.setAdapter(adapter);
-        /* adding some data for testing listView */
         adapter.notifyDataSetChanged();
 
     }

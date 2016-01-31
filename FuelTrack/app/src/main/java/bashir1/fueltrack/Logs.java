@@ -10,6 +10,7 @@ import java.util.Date;
 /*
 * @params good for documentation!!!
 * */
+    /* FIXME you need extends LogsInterface */
 public class Logs {
     private ArrayList<Entry> logs;
 
@@ -42,29 +43,29 @@ public class Logs {
         return cost;
     }
 
-    /*
-    * FIXME consider removing addNewEntry
-    * */
 
-    public void addNewEntry(Date date, String station, Double odometer, String fuelGrade,
+    public boolean addNewEntry(Date date, String station, Double odometer, String fuelGrade,
                           Double fuelAmount, Double fuelUnitCost) {
         Entry entry = new Entry(date, station, odometer, fuelAmount, fuelUnitCost, fuelGrade);
-        this.logs.add(entry);
+
+        return this.logs.add(entry);
     }
 
-    public void add(Entry entry) {
-        this.logs.add(entry);
+    public boolean add(Entry entry) {
+        return this.logs.add(entry);
     }
 
-    public void editLog(int index, Entry entry) {
-        /*TODO
-        * should you use int index or Log log?
-        * how will you edit, will you need parameters?
-        * */
+    public boolean editLog(int index, Entry entry) {
+        if (logs.size() == 0) {
+            logs.add(0, entry);
+            return hasEntry(entry);
+        }
+        else {
+            logs.remove(index);
+            logs.add(index, entry);
+            return hasEntry(entry);
+        }
 
-        //Log log = logs.get(index);
-        logs.remove(index);
-        logs.add(index, entry);
     }
 
     public boolean hasEntry(Entry entry) {

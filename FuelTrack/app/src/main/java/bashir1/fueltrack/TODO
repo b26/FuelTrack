@@ -8,3 +8,13 @@
 - Why do I even need LogsModel?
 
 - Refactor Code. Put into methods etc...
+
+
+**** CONTEXT.GETAPPLICATIONCONTEXT() NEEDS TO BE FIXED. ITS BEING A BIG BITCH RIGHT NOW.
+
+
+*****
+
+- Hitting android back button screws up stuff
+
+*****

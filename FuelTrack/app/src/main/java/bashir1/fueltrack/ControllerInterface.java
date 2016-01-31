@@ -9,23 +9,16 @@ import java.util.Date;
  * Created by bashir1 on 1/28/16.
  */
 public interface ControllerInterface {
-    void save(Context context);
-    void load(Context context);
+    int save(Context context);
+    int load(Context context);
     void initLogs();
-    void add(Date date, String station, Double odometer,
+    boolean add(Date date, String station, Double odometer,
              Double fuelAmount, Double fuelUnitCost, String fuelGrade);
     Entry newEntry(Date date, String station, Double odometer,
                    Double fuelAmount, Double fuelUnitCost, String fuelGrade);
-    void set(ArrayList<Entry> logs);
-    void add(Entry entry, int index);
-    void sort();
-    boolean hasEntry(Entry entry);
-    Entry getEntry(Entry entry);
+    boolean add(Entry entry, int index);
+    boolean add(Entry entry);
     Entry getAtIndex(int index);
-    ArrayList<Entry> get();
+    boolean hasEntry (Entry entry);
 
-/*    + sort(): void
-    + viewAll(): void
-    + getEntry(Entry: entry): Entry
-    + getLogs(): Log*/
 }
