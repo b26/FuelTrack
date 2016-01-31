@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -26,6 +27,7 @@ public class EditEntryActivity extends ActionBarActivity {
     private EditText fuelGradeText;
     private EditText fuelAmountText;
     private Button saveButton;
+    boolean valid;
     int position;
 
 
@@ -61,24 +63,30 @@ public class EditEntryActivity extends ActionBarActivity {
                 } catch (java.text.ParseException e){
                     e.printStackTrace();
                 }
-                String fuelGrade = fuelGradeText.getText().toString();
-                Double fuelAmount = Double.parseDouble(fuelAmountText.getText().toString());
-                Double odometer = Double.parseDouble(odometerText.getText().toString());
-                Double fuelUnitCost = Double.parseDouble(fuelUnitCostText.getText().toString());
-                String station = stationText.getText().toString();
+
+                /* validate the input */
+                valid = fc.validate(stationText, dateText, fuelAmountText, fuelGradeText, odometerText, fuelUnitCostText);
+
+                if (valid) {
+
+                    String fuelGrade = fuelGradeText.getText().toString();
+                    Double fuelAmount = Double.parseDouble(fuelAmountText.getText().toString());
+                    Double odometer = Double.parseDouble(odometerText.getText().toString());
+                    Double fuelUnitCost = Double.parseDouble(fuelUnitCostText.getText().toString());
+                    String station = stationText.getText().toString();
+
+                    /*
+                    * create a tmp entry then add it to the position (the index) that was passed
+                    * to this activity from MainActivity
+                    * */
+                    Entry tmp = fc.newEntry(date, station, odometer, fuelAmount, fuelUnitCost, fuelGrade);
+                    fc.add(tmp, position);
+                    fc.save(context);
 
 
-                /*
-                * create a tmp entry then add it to the position (the index) that was passed
-                * to this activity from MainActivity
-                * */
-                Entry tmp = fc.newEntry(date, station, odometer, fuelAmount, fuelUnitCost, fuelGrade);
-                fc.add(tmp, position);
-                fc.save(context);
-
-
-                Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivityForResult(myIntent, 0);
+                    Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivityForResult(myIntent, 0);
+                }
             }
         });
 
@@ -98,13 +106,7 @@ public class EditEntryActivity extends ActionBarActivity {
         odometerText.setText(entry.getOdometer().toString());
         fuelUnitCostText.setText(entry.getFuelUnitCost().toString());
     }
-//
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//        Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
-//        startActivityForResult(myIntent, 0);
-//    }
+
 
     @Override
     /* http://stackoverflow.com/questions/14545139/android-back-button-in-the-title-bar */

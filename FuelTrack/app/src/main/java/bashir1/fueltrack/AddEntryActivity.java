@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -21,6 +22,7 @@ public class AddEntryActivity extends ActionBarActivity {
     private EditText fuelGradeText;
     private EditText fuelAmountText;
     private Context context;
+    boolean valid;
 
 
     private FuelTrackController fc = FuelTrackApplication.getController();
@@ -51,33 +53,61 @@ public class AddEntryActivity extends ActionBarActivity {
             public void onClick(View v) {
                 setResult(RESULT_OK);
                 String dateString = dateText.getText().toString();
+
                 /* http://stackoverflow.com/questions/4216745/java-string-to-date-conversion */
                 DateFormat format = new SimpleDateFormat("yyyy-MM-d", Locale.ENGLISH);
                 Date date = new Date();
+
                 try {
                     date = format.parse(dateString);
 
                 } catch (java.text.ParseException e){
                     e.printStackTrace();
                 }
-                String fuelGrade = fuelGradeText.getText().toString();
-                Double fuelAmount = Double.parseDouble(fuelAmountText.getText().toString());
-                Double odometer = Double.parseDouble(odometerText.getText().toString());
-                Double fuelUnitCost = Double.parseDouble(fuelUnitCostText.getText().toString());
-                String station = stationText.getText().toString();
 
-                fc.add(date, station, odometer, fuelAmount, fuelUnitCost, fuelGrade);
+                /* if the entry inputs are valid, then begin process to create entry*/
+                valid = fc.validate(stationText, dateText, fuelAmountText, fuelGradeText, odometerText, fuelUnitCostText);
+                if (valid) {
 
-                fc.save(context);
+                    String fuelGrade = fuelGradeText.getText().toString();
+                    Double fuelAmount = Double.parseDouble(fuelAmountText.getText().toString());
+                    Double odometer = Double.parseDouble(odometerText.getText().toString());
+                    Double fuelUnitCost = Double.parseDouble(fuelUnitCostText.getText().toString());
+                    String station = stationText.getText().toString();
 
+                    fc.add(date, station, odometer, fuelAmount, fuelUnitCost, fuelGrade);
+                    fc.save(context);
+                    Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivityForResult(myIntent, 0);
+                }
 
-                Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivityForResult(myIntent, 0);
             }
         });
     }
 
 
+
+    public boolean validate () {
+        ArrayList<EditText> textBoxes = new ArrayList<EditText>();
+        textBoxes.add(this.stationText);
+        textBoxes.add(this.dateText);
+        textBoxes.add(this.fuelAmountText);
+        textBoxes.add(this.fuelGradeText);
+        textBoxes.add(this.fuelUnitCostText);
+        textBoxes.add(this.odometerText);
+
+        boolean valid = true;
+
+        for (EditText text: textBoxes) {
+            int len = text.getText().length();
+            if (len == 0) {
+                text.setError("Invalid entry");
+                valid = false;
+            }
+        }
+        textBoxes.clear();
+        return valid;
+    }
 
     @Override
     /* http://stackoverflow.com/questions/14545139/android-back-button-in-the-title-bar */

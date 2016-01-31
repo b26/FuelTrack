@@ -1,20 +1,7 @@
-- Test Cases
-    - Look into how you could test the UI.
-
-- Need to check if the user entered something or not. If nothing entered -> alert message
-
-- UML Diagram needs to be updated.
+**** UML Diagram needs to be updated ****
 
 - Why do I even need LogsModel?
 
 - Refactor Code. Put into methods etc...
 
-
-**** CONTEXT.GETAPPLICATIONCONTEXT() NEEDS TO BE FIXED. ITS BEING A BIG BITCH RIGHT NOW.
-
-
-*****
-
-- Hitting android back button screws up stuff
-
-*****
+- How could you test the validate method?

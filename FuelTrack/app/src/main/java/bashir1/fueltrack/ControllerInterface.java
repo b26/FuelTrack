@@ -1,6 +1,7 @@
 package bashir1.fueltrack;
 
 import android.content.Context;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,5 +21,10 @@ public interface ControllerInterface {
     boolean add(Entry entry);
     Entry getAtIndex(int index);
     boolean hasEntry (Entry entry);
+    /* I did have a single parameter -> ArrayList<EditText> because it would of
+    * created more duplicate code than needed. So I went with the longer param style.
+    * */
+    boolean validate(EditText text1, EditText text2,EditText text3,
+                     EditText text4,EditText text5, EditText text6);
 
 }

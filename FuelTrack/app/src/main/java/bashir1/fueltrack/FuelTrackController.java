@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import android.content.Context;
+import android.widget.EditText;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -127,4 +128,27 @@ public class FuelTrackController implements ControllerInterface {
         return 0;
     }
 
+    /*TODO test case for validate */
+    @Override
+    public boolean validate(EditText text1, EditText text2,EditText text3,
+                            EditText text4,EditText text5, EditText text6) {
+        ArrayList<EditText> textBoxes = new ArrayList<EditText>();
+        textBoxes.add(text1);
+        textBoxes.add(text2);
+        textBoxes.add(text3);
+        textBoxes.add(text4);
+        textBoxes.add(text5);
+        textBoxes.add(text6);
+
+        boolean valid = true;
+
+        for (EditText text: textBoxes) {
+            int len = text.getText().length();
+            if (len == 0) {
+                text.setError("Invalid entry");
+                valid = false;
+            }
+        }
+        textBoxes.clear();
+        return valid;    }
 }
