@@ -30,7 +30,7 @@ public class AddEntryActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_entry);
-        context = getApplicationContext();
+        context = FuelTrackApplication.getContext();
 
         stationText = (EditText) findViewById(R.id.station);
         fuelGradeText = (EditText) findViewById(R.id.fuel_grade);
@@ -50,7 +50,7 @@ public class AddEntryActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 setResult(RESULT_OK);
-                String dateString = stationText.getText().toString();
+                String dateString = dateText.getText().toString();
                 /* http://stackoverflow.com/questions/4216745/java-string-to-date-conversion */
                 DateFormat format = new SimpleDateFormat("yyyy-MM-d", Locale.ENGLISH);
                 Date date = new Date();
@@ -68,7 +68,7 @@ public class AddEntryActivity extends ActionBarActivity {
 
                 fc.add(date, station, odometer, fuelAmount, fuelUnitCost, fuelGrade);
 
-                //fc.save(context);
+                fc.save(context);
 
 
                 Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
@@ -76,7 +76,6 @@ public class AddEntryActivity extends ActionBarActivity {
             }
         });
     }
-
 
 
 

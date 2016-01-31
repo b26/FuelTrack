@@ -24,7 +24,6 @@ public class FuelTrackControllerTest extends ActivityInstrumentationTestCase2 {
 
         entry = new Entry(new Date(), "Shell", 999.2, 45.2, 109.2, "Regular");
         fc.add(entry, 0);
-
         /* check if entry exists */
         assertTrue(fc.hasEntry(entry));
     }
@@ -40,10 +39,6 @@ public class FuelTrackControllerTest extends ActivityInstrumentationTestCase2 {
         assertTrue(fc.add(entry));
     }
 
-    public void testContext() {
-        context = FuelTrackApplication.getContext();
-        assertNotNull(context);
-    }
 
     public void testSave() {
         context = FuelTrackApplication.getContext();

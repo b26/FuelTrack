@@ -37,6 +37,10 @@ public class FuelTrackController implements ControllerInterface {
 
     }
 
+    public String pong() {
+        return "pong";
+    }
+
     @Override
     public void initLogs() {
         app.initLogs();

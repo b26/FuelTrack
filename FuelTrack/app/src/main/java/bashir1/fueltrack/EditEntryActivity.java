@@ -33,12 +33,11 @@ public class EditEntryActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_entry);
-        context = getApplicationContext();
+        context = FuelTrackApplication.getContext();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Edit Entry");
         Intent intent = getIntent();
         position = intent.getIntExtra(MainActivity.EXTRA_MESSAGE, 0);
-
         stationText = (EditText) findViewById(R.id.station_edit);
         fuelGradeText = (EditText) findViewById(R.id.fuel_grade_edit);
         odometerText = (EditText) findViewById(R.id.odometer_edit);
@@ -52,7 +51,7 @@ public class EditEntryActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 setResult(RESULT_OK);
-                String dateString = stationText.getText().toString();
+                String dateString = dateText.getText().toString();
                 /* http://stackoverflow.com/questions/4216745/java-string-to-date-conversion */
                 DateFormat format = new SimpleDateFormat("yyyy-MM-d", Locale.ENGLISH);
                 Date date = new Date();
@@ -69,10 +68,13 @@ public class EditEntryActivity extends ActionBarActivity {
                 String station = stationText.getText().toString();
 
 
-                /* I need a replace method...*/
+                /*
+                * create a tmp entry then add it to the position (the index) that was passed
+                * to this activity from MainActivity
+                * */
                 Entry tmp = fc.newEntry(date, station, odometer, fuelAmount, fuelUnitCost, fuelGrade);
                 fc.add(tmp, position);
-                //fc.save(context);
+                fc.save(context);
 
 
                 Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
@@ -87,14 +89,22 @@ public class EditEntryActivity extends ActionBarActivity {
     public void onStart() {
         super.onStart();
         Entry entry = fc.getAtIndex(position);
-        dateText.setText(entry.getDate().toString());
+        DateFormat format = new SimpleDateFormat("yyyy-MM-d", Locale.ENGLISH);
+        String date = format.format(entry.getDate());
+        dateText.setText(date);
         fuelAmountText.setText(entry.getFuelAmount().toString());
         fuelGradeText.setText(entry.getFuelGrade());
         stationText.setText(entry.getStation());
         odometerText.setText(entry.getOdometer().toString());
         fuelUnitCostText.setText(entry.getFuelUnitCost().toString());
     }
-
+//
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+//        startActivityForResult(myIntent, 0);
+//    }
 
     @Override
     /* http://stackoverflow.com/questions/14545139/android-back-button-in-the-title-bar */

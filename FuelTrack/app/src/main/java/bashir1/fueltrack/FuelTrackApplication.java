@@ -11,13 +11,15 @@ public class FuelTrackApplication extends Application {
 
     /* create and initialize Logs */
     transient public static Logs app = null;
-    private static Context sContext;
-
+    private static Context appContext;
+    /* TODO description
+    http://stackoverflow.com/questions/21994612/get-application-context-returns-null/21994789#21994789
+    */
     @Override
     public void onCreate() {
         super.onCreate();
         try {
-            sContext = getApplicationContext();
+            appContext = getApplicationContext();
 
         } catch (RuntimeException e) {
             e.printStackTrace();
@@ -25,7 +27,7 @@ public class FuelTrackApplication extends Application {
     }
 
     public static Context getContext() {
-        return sContext;
+        return appContext;
     }
 
 
@@ -47,10 +49,4 @@ public class FuelTrackApplication extends Application {
         return controller;
     }
 
-    /* create and initialize Application Context */
-//    public static Context getContext() {
-//        /* FIXME need to test for null then possibly recreate */
-//        if (context == null) context = createContext();
-//        return context;
-//    }
 }

@@ -22,7 +22,7 @@ public class MainActivity extends ActionBarActivity {
     private Context context;
 
     /* from lonelyTwitter */
-    public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
+    public final static String EXTRA_MESSAGE = "bashir1.fueltrack.MESSAGE";
 
 
     @Override
@@ -68,10 +68,24 @@ public class MainActivity extends ActionBarActivity {
         return true;
     }
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        /*
+        * Clear the previous activities and reload the current activity.
+        * the only way to exit this application is by pressing the home button.
+        * http://stackoverflow.com/questions/6330260/finish-all-previous-activities
+        * */
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
+        // automatically handle clicks on the Home/U®p button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 

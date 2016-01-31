@@ -23,6 +23,10 @@ public class Logs {
         return logs;
     }
 
+    public String pong() {
+        return "pong";
+    }
+
     public Entry getEntry(int index) {
         return logs.get(index);
     }
