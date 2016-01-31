@@ -11,12 +11,11 @@ import android.widget.EditText;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
 
-public class EditEntryActivity extends ActionBarActivity {
+public class EditEntryActivity extends ActionBarActivity implements ActivityHelpers {
 
     private Context context;
     private FuelTrackController fc = FuelTrackApplication.getController();
@@ -34,6 +33,32 @@ public class EditEntryActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.onCreateSetup();
+        this.onCreateListeners();
+
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        this.onStartData();
+
+    }
+
+    @Override
+    public void onStartData() {
+        Entry entry = fc.getAtIndex(position);
+        DateFormat format = new SimpleDateFormat("yyyy-MM-d", Locale.ENGLISH);
+        String date = format.format(entry.getDate());
+        dateText.setText(date);
+        fuelAmountText.setText(entry.getFuelAmount().toString());
+        fuelGradeText.setText(entry.getFuelGrade());
+        stationText.setText(entry.getStation());
+        odometerText.setText(entry.getOdometer().toString());
+        fuelUnitCostText.setText(entry.getFuelUnitCost().toString());
+    }
+
+    @Override
+    public void onCreateSetup() {
         setContentView(R.layout.activity_edit_entry);
         context = FuelTrackApplication.getContext();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -47,8 +72,10 @@ public class EditEntryActivity extends ActionBarActivity {
         dateText = (EditText) findViewById(R.id.date_edit);
         fuelAmountText = (EditText) findViewById(R.id.fuel_amount_edit);
         saveButton = (Button) findViewById(R.id.save_edit);
+    }
 
-
+    @Override
+    public void onCreateListeners() {
         saveButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -89,22 +116,6 @@ public class EditEntryActivity extends ActionBarActivity {
                 }
             }
         });
-
-
-
-    }
-    @Override
-    public void onStart() {
-        super.onStart();
-        Entry entry = fc.getAtIndex(position);
-        DateFormat format = new SimpleDateFormat("yyyy-MM-d", Locale.ENGLISH);
-        String date = format.format(entry.getDate());
-        dateText.setText(date);
-        fuelAmountText.setText(entry.getFuelAmount().toString());
-        fuelGradeText.setText(entry.getFuelGrade());
-        stationText.setText(entry.getStation());
-        odometerText.setText(entry.getOdometer().toString());
-        fuelUnitCostText.setText(entry.getFuelUnitCost().toString());
     }
 
 

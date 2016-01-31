@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements ActivityHelpers {
 
     private ListView listView;
     private ArrayAdapter<Entry> adapter;
@@ -28,36 +28,15 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = getApplicationContext();
-        setContentView(R.layout.activity_main);
-        getSupportActionBar().setTitle("bashir1-FuelTrack");
-        listView = (ListView) findViewById(R.id.list);
-        Button addButton = (Button) findViewById(R.id.add_new_entry);
+        this.onCreateSetup();
+        this.onCreateListeners();
 
-        addButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent (MainActivity.this, AddEntryActivity.class);
-                startActivity(intent);
-            }
-        });
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent (MainActivity.this, EditEntryActivity.class);
-                intent.putExtra(EXTRA_MESSAGE, position);
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        fc.load(context);
-        adapter = new ArrayAdapter<Entry>(this, R.layout.list_item, logs.getLogs());
-        listView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        this.onStartData();
 
     }
 
@@ -82,4 +61,40 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onStartData() {
+        fc.load(context);
+        adapter = new ArrayAdapter<Entry>(this, R.layout.list_item, logs.getLogs());
+        listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onCreateSetup() {
+        context = getApplicationContext();
+        setContentView(R.layout.activity_main);
+        getSupportActionBar().setTitle("bashir1-FuelTrack");
+        listView = (ListView) findViewById(R.id.list);
+    }
+
+    @Override
+    public void onCreateListeners() {
+        Button addButton = (Button) findViewById(R.id.add_new_entry);
+
+        addButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (MainActivity.this, AddEntryActivity.class);
+                startActivity(intent);
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent (MainActivity.this, EditEntryActivity.class);
+                intent.putExtra(EXTRA_MESSAGE, position);
+                startActivity(intent);
+            }
+        });
+    }
 }

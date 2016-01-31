@@ -10,11 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class AddEntryActivity extends ActionBarActivity {
+public class AddEntryActivity extends ActionBarActivity implements ActivityHelpers {
     private EditText dateText;
     private EditText stationText;
     private EditText odometerText;
@@ -31,6 +30,18 @@ public class AddEntryActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.onCreateSetup();
+        this.onCreateListeners();
+    }
+
+    @Override
+    public void onStartData() {
+        /* I didn't know what to do here. This method is not needed in this class.
+        * but its needed in the other two activities. */
+    }
+
+    @Override
+    public void onCreateSetup() {
         setContentView(R.layout.activity_add_entry);
         context = FuelTrackApplication.getContext();
 
@@ -41,14 +52,15 @@ public class AddEntryActivity extends ActionBarActivity {
         dateText = (EditText) findViewById(R.id.date);
         fuelAmountText = (EditText) findViewById(R.id.fuel_amount);
 
-
-        System.out.println(fuelGradeText);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Add New Entry");
+    }
+
+    @Override
+    public void onCreateListeners() {
         Button saveButton = (Button) findViewById(R.id.save);
 
-        saveButton.setOnClickListener(new View.OnClickListener(){
+        saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setResult(RESULT_OK);
@@ -61,7 +73,7 @@ public class AddEntryActivity extends ActionBarActivity {
                 try {
                     date = format.parse(dateString);
 
-                } catch (java.text.ParseException e){
+                } catch (java.text.ParseException e) {
                     e.printStackTrace();
                 }
 
@@ -83,30 +95,6 @@ public class AddEntryActivity extends ActionBarActivity {
 
             }
         });
-    }
-
-
-
-    public boolean validate () {
-        ArrayList<EditText> textBoxes = new ArrayList<EditText>();
-        textBoxes.add(this.stationText);
-        textBoxes.add(this.dateText);
-        textBoxes.add(this.fuelAmountText);
-        textBoxes.add(this.fuelGradeText);
-        textBoxes.add(this.fuelUnitCostText);
-        textBoxes.add(this.odometerText);
-
-        boolean valid = true;
-
-        for (EditText text: textBoxes) {
-            int len = text.getText().length();
-            if (len == 0) {
-                text.setError("Invalid entry");
-                valid = false;
-            }
-        }
-        textBoxes.clear();
-        return valid;
     }
 
     @Override
