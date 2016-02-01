@@ -26,8 +26,8 @@ public class EditEntryActivity extends ActionBarActivity implements ActivityHelp
     private EditText fuelGradeText;
     private EditText fuelAmountText;
     private Button saveButton;
-    boolean valid;
-    int position;
+    private boolean valid;
+    private int position;
 
 
     @Override

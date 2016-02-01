@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity implements ActivityHelpers, LogView<Logs> {
@@ -18,7 +19,9 @@ public class MainActivity extends ActionBarActivity implements ActivityHelpers, 
     private ArrayAdapter<Entry> adapter;
     private Logs logs = FuelTrackApplication.getApp();
     private FuelTrackController fc = FuelTrackApplication.getController();
+    private TextView totalCost;
     private Context context;
+    private Button addButton;
 
     /* used to save the position of the listView that is passed to EditEntryActivity*/
     public final static String POSITION = "bashir1.fueltrack.POSITION";
@@ -74,6 +77,7 @@ public class MainActivity extends ActionBarActivity implements ActivityHelpers, 
         setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle("bashir1-FuelTrack");
         listView = (ListView) findViewById(R.id.list);
+        totalCost = (TextView) findViewById(R.id.totalCost);
         /* add this view to the model, so the model could tell the view when
         * to update
         * */
@@ -95,6 +99,7 @@ public class MainActivity extends ActionBarActivity implements ActivityHelpers, 
     * notify listView of changes
     * */
     public void updateData() {
+        totalCost.setText(" " + fc.totalCost());
         adapter = new ArrayAdapter<Entry>(this, R.layout.list_item, logs.getLogs());
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -112,7 +117,7 @@ public class MainActivity extends ActionBarActivity implements ActivityHelpers, 
 
     @Override
     public void onCreateListeners() {
-        Button addButton = (Button) findViewById(R.id.add_new_entry);
+        addButton = (Button) findViewById(R.id.add_new_entry);
 
         addButton.setOnClickListener(new View.OnClickListener(){
             @Override

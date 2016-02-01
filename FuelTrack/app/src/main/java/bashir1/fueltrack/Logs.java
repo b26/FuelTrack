@@ -12,7 +12,7 @@ public class Logs extends LogsModel<LogView> {
 
     private ArrayList<Entry> logs;
 
-    public Logs() {
+    public  Logs() {
         this.initLogs();
     }
 

@@ -33,5 +33,6 @@ public interface ControllerInterface {
     /* Checks if the EditText fields in the UI are valid.*/
     boolean validate(EditText text1, EditText text2,EditText text3,
                      EditText text4,EditText text5, EditText text6);
+    String totalCost();
 
 }

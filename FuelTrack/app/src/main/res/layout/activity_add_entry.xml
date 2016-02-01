@@ -18,7 +18,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_alignParentEnd="false"
-        android:hint="Date" />
+        android:hint="Date (yyyy-mm-dd)" />
 
 
 
@@ -26,7 +26,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/station"
-        android:hint="Station"
+        android:hint="Station (Textual)"
         android:layout_below="@+id/date"
         android:layout_alignParentStart="true"
         android:inputType="text" />
@@ -35,7 +35,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/odometer"
-        android:hint="Odometer"
+        android:hint="Odometer (KM)"
         android:layout_below="@+id/station"
         android:layout_alignParentStart="true"
         android:inputType="numberDecimal" />
@@ -44,7 +44,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/fuel_amount"
-        android:hint="Fuel Amount"
+        android:hint="Fuel Amount (L)"
         android:layout_below="@+id/odometer"
         android:layout_alignParentStart="true"
         android:inputType="numberDecimal" />
@@ -53,7 +53,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/fuel_unit_cost"
-        android:hint="Fuel Unit Cost"
+        android:hint="Fuel Unit Cost (cents per L)"
         android:layout_below="@+id/fuel_amount"
         android:layout_alignParentStart="true"
         android:inputType="numberDecimal" />
@@ -62,7 +62,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/fuel_grade"
-        android:hint="Fuel Grade"
+        android:hint="Fuel Grade (Textual)"
         android:layout_below="@+id/fuel_unit_cost"
         android:layout_alignParentStart="true"
         android:inputType="text"/>

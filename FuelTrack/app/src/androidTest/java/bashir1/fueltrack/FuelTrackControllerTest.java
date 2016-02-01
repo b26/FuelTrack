@@ -97,5 +97,20 @@ public class FuelTrackControllerTest extends ActivityInstrumentationTestCase2 {
         assertTrue(valid);
     }
 
+    public void testTotalCost() {
+        /* create a new set of logs */
+
+        fc.initLogs();
+        assertEquals("No costs yet.", fc.totalCost());
+
+        /* add new log and check the cost */
+        entry = new Entry(new Date(), "Shell", 999.2, 45.2, 109.2, "Regular");
+        fc.add(entry);
+
+
+        assertEquals("Total Cost: $49.36", fc.totalCost());
+
+    }
+
 
 }

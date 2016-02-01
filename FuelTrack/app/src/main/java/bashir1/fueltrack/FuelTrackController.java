@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import  java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,8 +24,8 @@ import com.google.gson.reflect.TypeToken;
  */
 public class FuelTrackController implements ControllerInterface {
 
-    Logs app;
-    Gson gson;
+    private Logs app;
+    private Gson gson;
 
     private static final String FILENAME = "file.sav";
 
@@ -102,6 +102,17 @@ public class FuelTrackController implements ControllerInterface {
         return app.getEntry(index);
     }
 
+    @Override
+    public String totalCost() {
+
+        double rounded = app.totalCost() * 100;
+        rounded = Math.round(rounded);
+        rounded = rounded/100;
+        if (app.totalCost() > 0) {
+            return "Total Cost: $" + rounded;
+        }
+        return "No costs yet.";
+    }
 
     @Override
     public int load(Context context) {
@@ -110,8 +121,9 @@ public class FuelTrackController implements ControllerInterface {
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
             gson = new Gson();
 
-			/* take from google documentation.
-			https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/Gson.html
+			/*
+			* take from google documentation.
+			* https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/Gson.html
 			*/
             Type listType = new TypeToken<ArrayList<Entry>>(){}.getType();
             ArrayList<Entry> tmp;

@@ -18,7 +18,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_alignParentEnd="false"
-        android:hint="Date"
+        android:hint="Date (yyyy-mm-dd)"
         android:clickable="true" />
 
 
@@ -27,7 +27,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/station_edit"
-        android:hint="Station"
+        android:hint="Station (Textual)"
         android:layout_below="@+id/date_edit"
         android:layout_alignParentStart="true"
         android:inputType="text" />
@@ -36,7 +36,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/odometer_edit"
-        android:hint="Odometer"
+        android:hint="Odometer (KM)"
         android:layout_below="@+id/station_edit"
         android:layout_alignParentStart="true"
         android:inputType="numberDecimal" />
@@ -45,7 +45,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/fuel_amount_edit"
-        android:hint="Fuel Amount"
+        android:hint="Fuel Amount (L)"
         android:layout_below="@+id/odometer_edit"
         android:layout_alignParentStart="true"
         android:inputType="numberDecimal" />
@@ -54,7 +54,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/fuel_unit_cost_edit"
-        android:hint="Fuel Unit Cost"
+        android:hint="Fuel Unit Cost (cents per L)"
         android:layout_below="@+id/fuel_amount_edit"
         android:layout_alignParentStart="true"
         android:inputType="numberDecimal" />
@@ -63,7 +63,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/fuel_grade_edit"
-        android:hint="Fuel Grade"
+        android:hint="Fuel Grade (Textual)"
         android:layout_below="@+id/fuel_unit_cost_edit"
         android:layout_alignParentStart="true"
         android:inputType="text"/>

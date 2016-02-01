@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /* https://github.com/b26/FillerCreepForAndroid/blob/master/app/src/main/java/es/softwareprocess/fillercreep/FModel.java */
 
 public class LogsModel<View extends LogView> {
-    ArrayList<View> views;
+    private ArrayList<View> views;
 
     public LogsModel() {
         views = new ArrayList<View>();
