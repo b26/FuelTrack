@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class AddEntryActivity extends ActionBarActivity implements ActivityHelpers {
+
     private EditText dateText;
     private EditText stationText;
     private EditText odometerText;
@@ -37,6 +38,7 @@ public class AddEntryActivity extends ActionBarActivity implements ActivityHelpe
 
     @Override
     public void onStartData() {
+
         /* I didn't know what to do here. This method is not needed in this class.
         * but its needed in the other two activities. */
     }
@@ -93,7 +95,6 @@ public class AddEntryActivity extends ActionBarActivity implements ActivityHelpe
                     Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivityForResult(myIntent, 0);
                 }
-
             }
         });
     }
@@ -102,7 +103,7 @@ public class AddEntryActivity extends ActionBarActivity implements ActivityHelpe
     @Override
     /* http://stackoverflow.com/questions/14545139/android-back-button-in-the-title-bar */
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent myIntent = new Intent(context, MainActivity.class);
         startActivityForResult(myIntent, 0);
         return true;
     }

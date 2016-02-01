@@ -23,6 +23,7 @@ import com.google.gson.reflect.TypeToken;
  * Created by bashir1 on 1/28/16.
  */
 public class FuelTrackController implements ControllerInterface {
+
     Logs app;
     Gson gson;
 
@@ -75,8 +76,6 @@ public class FuelTrackController implements ControllerInterface {
         /* Check if log already exists */
 
         try {
-            /* taken from lonely twitter FIXME link needed */
-            /*FIXME maybe you should...change context*/
             FileOutputStream fos = context.openFileOutput(FILENAME, 0);
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
             Gson gson = new Gson();
@@ -122,13 +121,13 @@ public class FuelTrackController implements ControllerInterface {
 
         } catch (FileNotFoundException e) {
             this.initLogs();
+            return 1;
         } catch (IOException e) {
             throw new RuntimeException();
         }
-        return 0;
+        //return 0;
     }
 
-    /*TODO test case for validate */
     @Override
     public boolean validate(EditText text1, EditText text2,EditText text3,
                             EditText text4,EditText text5, EditText text6) {

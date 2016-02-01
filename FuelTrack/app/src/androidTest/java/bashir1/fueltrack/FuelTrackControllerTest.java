@@ -2,6 +2,7 @@ package bashir1.fueltrack;
 
 import android.content.Context;
 import android.test.ActivityInstrumentationTestCase2;
+import android.widget.EditText;
 
 import java.util.Date;
 
@@ -76,6 +77,24 @@ public class FuelTrackControllerTest extends ActivityInstrumentationTestCase2 {
         entry = new Entry(new Date(), "Shell", 999.2, 45.2, 109.2, "Regular");
         fc.add(entry);
         assertTrue(fc.hasEntry(entry));
+    }
+
+    public void testValidateFalse() {
+        context = FuelTrackApplication.getContext();
+        EditText text = new EditText(context);
+        boolean valid;
+        text.setText("");
+        valid = fc.validate(text, text, text, text, text, text);
+        assertFalse(valid);
+    }
+
+    public void testValidateTrue() {
+        context = FuelTrackApplication.getContext();
+        EditText text = new EditText(context);
+        boolean valid;
+        text.setText("something");
+        valid = fc.validate(text, text, text, text, text, text);
+        assertTrue(valid);
     }
 
 

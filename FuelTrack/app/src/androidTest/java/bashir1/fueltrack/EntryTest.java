@@ -88,9 +88,12 @@ public class EntryTest extends ActivityInstrumentationTestCase2 {
 
     /* tests fuel cost*/
     public void testFuelCost() {
+        double fuelCost;
         double fuelAmount = 45.2;
         double fuelUnitCost = 64.2;
-        double fuelCost = Math.round(fuelAmount * (fuelUnitCost/100));
+        double number = (fuelAmount * (fuelUnitCost/100))*100;
+        number = Math.round(number);
+        fuelCost = number / 100;
         Entry entry = new Entry(new Date(), "Shell", 82828.1, fuelAmount, fuelUnitCost, "Regular");
         assertEquals(fuelCost, entry.fuelCost());
     }

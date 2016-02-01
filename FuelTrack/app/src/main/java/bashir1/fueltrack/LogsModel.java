@@ -6,7 +6,8 @@ import java.util.ArrayList;
  * Created by bashir1 on 1/28/16.
  */
 
-/* TODO add reference to FillerCreep */
+/* https://github.com/b26/FillerCreepForAndroid/blob/master/app/src/main/java/es/softwareprocess/fillercreep/FModel.java */
+
 public class LogsModel<View extends LogView> {
     ArrayList<View> views;
 

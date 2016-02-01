@@ -17,22 +17,27 @@ public class Logs extends LogsModel<LogView> {
     }
 
     public ArrayList<Entry> getLogs() {
-        return logs;
+        return this.logs;
     }
 
+    /* used for testing. to check if the class was created */
     public String pong() {
         return "pong";
     }
 
     public Entry getEntry(int index) {
-        return logs.get(index);
+        return this.logs.get(index);
     }
 
+    /* takes an ArrayList<Entry> and replaces this.logs with it
+    * then it notifies the views
+    * */
     public void setLogs(ArrayList<Entry> logs) {
         this.logs = logs;
         notifyViews();
     }
 
+    /* initializes a new set of Logs then notifies the views */
     public void initLogs () {
         this.logs = new ArrayList<Entry>();
         notifyViews();
@@ -46,6 +51,9 @@ public class Logs extends LogsModel<LogView> {
         return cost;
     }
 
+    /*
+    * adds a new entry to logs. if succeeded it notifies the views.
+    * */
 
     public boolean addNewEntry(Date date, String station, Double odometer, String fuelGrade,
                           Double fuelAmount, Double fuelUnitCost) {
@@ -55,6 +63,9 @@ public class Logs extends LogsModel<LogView> {
         return result;
     }
 
+    /* adds an entry to the list. if result is true, then it notifies MainActivity
+    * then returns the result.
+    * */
     public boolean add(Entry entry) {
         boolean result = this.logs.add(entry);
         if (result) {
@@ -63,9 +74,18 @@ public class Logs extends LogsModel<LogView> {
         return result;
     }
 
+    /* if the list is empty, then insert. this will almost never be the case
+    *  because when this method is called, the list has some values.
+    *
+    * if the list has values, then remove the entry at the given index
+    * then add a new entry at that index.
+    *
+    * returns a boolean -> true if it added, false if it didn't.
+    * */
+
     public boolean editLog(int index, Entry entry) {
-        if (logs.size() == 0) {
-            logs.add(0, entry);
+        if (logs.isEmpty()) {
+            logs.add(entry);
         }
         else {
             logs.remove(index);

@@ -77,6 +77,14 @@ public class Entry {
     }
 
     public double fuelCost() {
-        return Math.round((this.getFuelUnitCost()/100) * this.getFuelAmount());
+        /* http://stackoverflow.com/a/17072953/3935511
+        * this seemed like the most efficient way to round a decimal without using any
+        * formatting methods.
+        * */
+        double number = ((this.getFuelUnitCost()/100) * this.getFuelAmount())*100;
+        double rounded;
+        number = Math.round(number);
+        rounded = number / 100;
+        return rounded;
     }
 }

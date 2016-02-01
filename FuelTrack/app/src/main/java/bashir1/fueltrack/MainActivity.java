@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,8 +20,8 @@ public class MainActivity extends ActionBarActivity implements ActivityHelpers, 
     private FuelTrackController fc = FuelTrackApplication.getController();
     private Context context;
 
-    /* from lonelyTwitter */
-    public final static String EXTRA_MESSAGE = "bashir1.fueltrack.MESSAGE";
+    /* used to save the position of the listView that is passed to EditEntryActivity*/
+    public final static String POSITION = "bashir1.fueltrack.POSITION";
 
 
     @Override
@@ -63,7 +62,9 @@ public class MainActivity extends ActionBarActivity implements ActivityHelpers, 
 
     @Override
     public void onStartData() {
+        /* load our data */
         fc.load(context);
+        /* notify listView of changes */
         updateData();
     }
 
@@ -73,18 +74,26 @@ public class MainActivity extends ActionBarActivity implements ActivityHelpers, 
         setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle("bashir1-FuelTrack");
         listView = (ListView) findViewById(R.id.list);
-        /* FIXME it should be the controller that adds the view */
+        /* add this view to the model, so the model could tell the view when
+        * to update
+        * */
         logs.addView(this);
     }
 
-
-
-    /* this design style was inspired by FillerCreep */
+    /*
+    * the update method gets called from LogsModel. LogsModel Class
+    * implements notifyViews which is called by Logs Class
+    * this process is started by FuelTrackController Class
+    * the update calls updateData()
+    * */
     @Override
     public void update(Logs logs) {
         updateData();
     }
 
+    /*
+    * notify listView of changes
+    * */
     public void updateData() {
         adapter = new ArrayAdapter<Entry>(this, R.layout.list_item, logs.getLogs());
         listView.setAdapter(adapter);
@@ -112,11 +121,14 @@ public class MainActivity extends ActionBarActivity implements ActivityHelpers, 
                 startActivity(intent);
             }
         });
+        /* handles clicking on a listView item. If you click on an item
+        * it passes the position number to EditEntryActivity
+        * */
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent (MainActivity.this, EditEntryActivity.class);
-                intent.putExtra(EXTRA_MESSAGE, position);
+                intent.putExtra(POSITION, position);
                 startActivity(intent);
             }
         });

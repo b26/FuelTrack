@@ -64,7 +64,7 @@ public class EditEntryActivity extends ActionBarActivity implements ActivityHelp
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Edit Entry");
         Intent intent = getIntent();
-        position = intent.getIntExtra(MainActivity.EXTRA_MESSAGE, 0);
+        position = intent.getIntExtra(MainActivity.POSITION, 0);
         stationText = (EditText) findViewById(R.id.station_edit);
         fuelGradeText = (EditText) findViewById(R.id.fuel_grade_edit);
         odometerText = (EditText) findViewById(R.id.odometer_edit);
@@ -122,7 +122,7 @@ public class EditEntryActivity extends ActionBarActivity implements ActivityHelp
     @Override
     /* http://stackoverflow.com/questions/14545139/android-back-button-in-the-title-bar */
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent myIntent = new Intent(context, MainActivity.class);
         startActivityForResult(myIntent, 0);
         return true;
     }
