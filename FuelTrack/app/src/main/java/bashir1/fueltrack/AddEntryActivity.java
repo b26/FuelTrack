@@ -29,6 +29,7 @@ public class AddEntryActivity extends ActionBarActivity implements ActivityHelpe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         this.onCreateSetup();
         this.onCreateListeners();
@@ -96,6 +97,7 @@ public class AddEntryActivity extends ActionBarActivity implements ActivityHelpe
             }
         });
     }
+
 
     @Override
     /* http://stackoverflow.com/questions/14545139/android-back-button-in-the-title-bar */

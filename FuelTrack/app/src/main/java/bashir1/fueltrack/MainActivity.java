@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 
-public class MainActivity extends ActionBarActivity implements ActivityHelpers {
+public class MainActivity extends ActionBarActivity implements ActivityHelpers, LogView<Logs> {
 
     private ListView listView;
     private ArrayAdapter<Entry> adapter;
@@ -64,9 +64,7 @@ public class MainActivity extends ActionBarActivity implements ActivityHelpers {
     @Override
     public void onStartData() {
         fc.load(context);
-        adapter = new ArrayAdapter<Entry>(this, R.layout.list_item, logs.getLogs());
-        listView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        updateData();
     }
 
     @Override
@@ -75,6 +73,32 @@ public class MainActivity extends ActionBarActivity implements ActivityHelpers {
         setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle("bashir1-FuelTrack");
         listView = (ListView) findViewById(R.id.list);
+        /* FIXME it should be the controller that adds the view */
+        logs.addView(this);
+    }
+
+
+
+    /* this design style was inspired by FillerCreep */
+    @Override
+    public void update(Logs logs) {
+        updateData();
+    }
+
+    public void updateData() {
+        adapter = new ArrayAdapter<Entry>(this, R.layout.list_item, logs.getLogs());
+        listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        /* this will only be called when the activity is destroyed or
+         * android decides to free up some memory or when finish() is called by the system
+         * */
+        logs.removeView(this);
     }
 
     @Override

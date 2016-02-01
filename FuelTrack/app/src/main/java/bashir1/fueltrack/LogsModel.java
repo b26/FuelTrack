@@ -5,6 +5,8 @@ import java.util.ArrayList;
 /**
  * Created by bashir1 on 1/28/16.
  */
+
+/* TODO add reference to FillerCreep */
 public class LogsModel<View extends LogView> {
     ArrayList<View> views;
 
@@ -30,7 +32,6 @@ public class LogsModel<View extends LogView> {
 
     public void notifyViews() {
         for (View view: views) {
-            /* error here. ask ken wong */
             view.update(this);
         }
     }

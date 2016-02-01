@@ -40,7 +40,7 @@ public class EntryTest extends ActivityInstrumentationTestCase2 {
         String stationInit = "Shell";
         Entry entry = new Entry(new Date(), stationInit, 8888.8, 45.2, 64.2, "Regular");
         assertEquals(stationInit, entry.getStation());
-        String station = "Huskey";
+        String station = "Husky";
         entry.setStation(station);
         assertEquals(station, entry.getStation());
     }

@@ -21,6 +21,7 @@ public class LogsTest extends ActivityInstrumentationTestCase2 {
         assertTrue(logs.hasEntry(entry));
     }
 
+
     public void testGetEntry() {
         Logs logs = new Logs();
         Entry entry = new Entry(new Date(), "Shell", 8888.8, 45.2, 64.2, "Regular");

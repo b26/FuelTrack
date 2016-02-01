@@ -25,6 +25,7 @@ import com.google.gson.reflect.TypeToken;
 public class FuelTrackController implements ControllerInterface {
     Logs app;
     Gson gson;
+
     private static final String FILENAME = "file.sav";
 
     public boolean init() {
@@ -118,7 +119,6 @@ public class FuelTrackController implements ControllerInterface {
             tmp = gson.fromJson(in, listType);
             app.setLogs(tmp);
             return 1;
-            //tmp.clear();
 
         } catch (FileNotFoundException e) {
             this.initLogs();
@@ -150,5 +150,6 @@ public class FuelTrackController implements ControllerInterface {
             }
         }
         textBoxes.clear();
-        return valid;    }
+        return valid;
+    }
 }
